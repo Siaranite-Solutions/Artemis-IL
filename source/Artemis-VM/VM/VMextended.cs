@@ -24,7 +24,8 @@ namespace Artemis_IL
         /// 8-bit registers (PC, IP, SS, AL, AH, BL, BH, CL, CH) are truncated to their low byte.
         /// Writing to the composite registers A (0xF4), B (0xF7), or C (0xFA) splits the 16-bit value
         /// across the corresponding L/H byte pair via <see cref="SetSplit"/>.
-        /// Writing to SP (0xF2) is silently ignored — SP is read-only per spec §3.
+        /// Writing to SP (0xF2) is silently ignored — SP is managed automatically by stack operations
+        /// (PSH/POP) and must not be modified by program code.
         /// </summary>
         /// <param name="Register">Register identifier byte (0xF0–0xFE).</param>
         /// <param name="Content">Value to write.</param>

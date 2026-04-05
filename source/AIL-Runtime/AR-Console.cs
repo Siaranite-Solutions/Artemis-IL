@@ -33,7 +33,7 @@ namespace AIL_Runtime
 
 		/// <inheritdoc/>
 		/// <remarks>
-		/// Reads one keypress (hidden from the terminal), converts the Unicode key character
+		/// Reads one keypress (echoed to the terminal), converts the Unicode key character
 		/// to its ASCII byte value, and returns it.
 		/// </remarks>
 		public override byte Read()
