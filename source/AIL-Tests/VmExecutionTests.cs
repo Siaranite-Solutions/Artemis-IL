@@ -283,6 +283,57 @@ KEI 0x02
             Assert.Equal("HiHalting!\n", _console.Output);
         }
 
+        // ── SWI 0x01 — String utilities ─────────────────────────────────────────
+
+        /// <summary>
+        /// SWI 0x01 AL=0x01 (strlen): stores a null-terminated string "AIL\0" in RAM,
+        /// points X at it, calls SWI, and asserts B == 3.
+        /// </summary>
+        [Fact]
+        public void SwiStrlen_ReturnsCorrectLength()
+        {
+            // Store "AIL\0" at 0x80: 0x41='A', 0x49='I', 0x4C='L', 0x00=null terminator
+            const string source = @"
+MOM 0x41, 0x80
+MOM 0x49, 0x81
+MOM 0x4C, 0x82
+MOM 0x00, 0x83
+MOV AL, 0x01
+MOV X, 0x80
+SWI 0x01
+KEI 0x02
+";
+            VM vm = CompileAndRun(source);
+            Assert.Equal(3, vm.GetSplit('B'));
+        }
+
+        /// <summary>
+        /// SWI 0x01 AL=0x02 (strcpy): copies 3 bytes from address 0x80 to 0x90,
+        /// then reads them back via KEI write-string and asserts the output.
+        /// </summary>
+        [Fact]
+        public void SwiStrcpy_CopiesBytes()
+        {
+            // Source "Hi!" at 0x80; copy 3 bytes to 0x90; print from 0x90.
+            const string source = @"
+MOM 0x48, 0x80
+MOM 0x69, 0x81
+MOM 0x21, 0x82
+MOV AL, 0x02
+MOV X, 0x80
+MOV Y, 0x90
+MOV BL, 3
+SWI 0x01
+MOV AL, 0x02
+MOV X, 0x90
+MOV BL, 3
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("Hi!Halting!\n", _console.Output);
+        }
+
         // ── Compiler error handling ──────────────────────────────────────────────
 
         /// <summary>The compiler must reject an unknown mnemonic with a <see cref="BuildException"/>.</summary>
