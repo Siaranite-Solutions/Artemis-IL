@@ -1,10 +1,68 @@
 # Artemis-IL
-A free and open source virtual machine targeting .NET Standard.
 
-This repository aims to provide the language, runtime, virtual machine and standard library specification,
-along with other documentation required for a full implementation. The source code for the virtual machine 
-and runtime can be found in the /source/ folder, while the accompanying documentation can be found in the /docs/ folder.
+A free and open source register-based virtual machine and intermediate language targeting .NET Standard.
 
-For documentation on the current AIL Standard, Virtual Machine and Language, see the [GitHub Wiki](../../wiki).
+Artemis-IL (AIL) provides a stable, portable compilation target with a small orthogonal instruction set, a two-pass assembler, a decompiler, and an integrated IDE (AIL Studio). The same AIL bytecode runs identically on any compliant VM implementation.
 
-Source code is kept in the /source/ folder. The /wiki/ folder in this repository is a mirror of the wiki pages.
+For the full language and VM specification, standard library reference, and instruction set, see the **[GitHub Wiki](../../wiki)**.
+
+---
+
+## Repository layout
+
+| Path | Contents |
+|------|----------|
+| `/source/Artemis-VM` | Core VM library (netstandard2.0) — registers, RAM, instruction execution |
+| `/source/AIL-Runtime` | Command-line runtime host (net8.0) |
+| `/source/AIL-Studio` | WinForms IDE with assembler, decompiler, and step debugger (net8.0-windows) |
+| `/source/AIL-Tests` | xUnit test suite |
+| `/wiki` | Mirror of the GitHub Wiki pages |
+| `/docs` | Original reference documents |
+| `/examples` | Sample `.ail` assembly programs |
+
+---
+
+## Building
+
+Requires the [.NET 8 SDK](https://dotnet.microsoft.com/download).
+
+```sh
+# Build all projects
+dotnet build "Artemis IL.sln"
+
+# Run the tests
+dotnet test source/AIL-Tests/AIL-Tests.csproj
+```
+
+> **Note:** AIL-Studio targets `net8.0-windows` and will only build on Windows. The VM library, runtime, and tests build cross-platform.
+
+---
+
+## Running
+
+```sh
+# Run the built-in "Hello, World!" demo
+dotnet run --project source/AIL-Runtime
+
+# Run an AIL assembly file (compile first with AIL Studio, or pass raw bytecode)
+dotnet run --project source/AIL-Runtime -- path/to/program.ila
+```
+
+---
+
+## Examples
+
+The `/examples` folder contains ready-to-assemble `.ail` programs:
+
+| File | Description |
+|------|-------------|
+| `hello_world_db.ail` | Prints "Hello, World" using the `DB` pseudo-instruction and the write-string interrupt |
+| `calculator.ail` | Demonstrates arithmetic instructions and integer output |
+
+Open any `.ail` file in AIL Studio to assemble, run, and step-debug it interactively.
+
+---
+
+## License
+
+This project is released under the terms of the [LICENSE](LICENSE) file in this repository.

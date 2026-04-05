@@ -20,10 +20,14 @@ namespace Artemis_IL
         }
 
         /// <summary>
-        /// Places content into a register, splitting if necessary
+        /// Writes <paramref name="Content"/> into the register identified by <paramref name="Register"/>.
+        /// 8-bit registers (PC, IP, SS, AL, AH, BL, BH, CL, CH) are truncated to their low byte.
+        /// Writing to the composite registers A (0xF4), B (0xF7), or C (0xFA) splits the 16-bit value
+        /// across the corresponding L/H byte pair via <see cref="SetSplit"/>.
+        /// Writing to SP (0xF2) is silently ignored — SP is read-only per spec §3.
         /// </summary>
-        /// <param name="Register"></param>
-        /// <param name="Content"></param>
+        /// <param name="Register">Register identifier byte (0xF0–0xFE).</param>
+        /// <param name="Content">Value to write.</param>
         private void SetRegister(byte Register, int Content)
         {
             if (Register == (byte)0xF0)
@@ -60,10 +64,12 @@ namespace Artemis_IL
         }
 
         /// <summary>
-        /// Returns an integer value stored in a register
+        /// Reads the current value of the register identified by <paramref name="Register"/>.
+        /// Composite registers A (0xF4), B (0xF7), and C (0xFA) return their combined 16-bit value
+        /// via <see cref="GetSplit"/>. Unknown register bytes return 0.
         /// </summary>
-        /// <param name="Reg"></param>
-        /// <returns></returns>
+        /// <param name="Register">Register identifier byte (0xF0–0xFE).</param>
+        /// <returns>Current integer value stored in the register.</returns>
         private int GetRegister(byte Register)
         {
             if (Register == (byte)0xF0)

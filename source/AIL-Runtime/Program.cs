@@ -4,6 +4,12 @@ using System.IO;
 
 namespace AIL_Runtime
 {
+    /// <summary>
+    /// Entry point for the AIL-Runtime command-line host.
+    /// Loads an AIL executable (raw bytecode or structured <c>.ila</c> file) and runs it
+    /// inside an <see cref="Artemis_IL.VM"/> instance with a 64 KB address space.
+    /// When invoked without arguments the built-in "Hello, World!" demo is executed.
+    /// </summary>
     class Program
     {
         // Instruction encoding helper: byte 0 = (opcode << 2) | addrmode
@@ -80,6 +86,12 @@ namespace AIL_Runtime
             0xAC, 0x02, 0x00, 0x00, 0x00, 0x00,
         };
 
+        /// <summary>
+        /// Application entry point.
+        /// If <paramref name="args"/> is empty, runs the built-in <see cref="HelloWorld"/> demo.
+        /// Otherwise treats <c>args[0]</c> as a file path, reads all bytes, and executes them.
+        /// Any VM exception is caught, printed in red, and waits for a keypress before exiting.
+        /// </summary>
         static void Main(string[] args)
         {
             byte[] LoadedApplication = null;

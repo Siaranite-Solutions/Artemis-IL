@@ -4,10 +4,30 @@ using System.Text;
 
 namespace Artemis_IL.StandardLib
 {
+    /// <summary>
+    /// Implements the AIL software interrupt handler (SWI instruction, opcode 0x2A).
+    ///
+    /// <b>Usage in AIL source:</b>
+    /// <code>
+    ///   SWI 0x01   ; string utilities — operation selected by register AL
+    /// </code>
+    ///
+    /// <b>SWI 0x01 — string utilities (behaviour controlled by AL):</b>
+    /// <list type="table">
+    ///   <listheader><term>AL</term><description>Action</description></listheader>
+    ///   <item><term>0x01</term><description>Strlen: count bytes at address X until a zero byte; store length in B.</description></item>
+    ///   <item><term>0x02</term><description>Strcpy: copy B bytes from address X to address Y.</description></item>
+    /// </list>
+    /// </summary>
     public static class SoftwareInterrupts
     {
+        /// <summary>The VM instance that issued the SWI instruction.</summary>
         public static VM ParentVM;
 
+        /// <summary>
+        /// Dispatches a software interrupt.
+        /// </summary>
+        /// <param name="command">The interrupt number taken from the SWI operand (byte 1 of the instruction).</param>
         public static void HandleInterrupt(int command)
         {
             // SWI 0x01 — String utilities

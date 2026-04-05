@@ -7,7 +7,7 @@ Welcome to the AIL wiki. This wiki is the normative reference for the Artemis In
 | Page | Description |
 |------|-------------|
 | [[Specification]] | Architecture & instruction set specification (v2.0) |
-| [[Standard-Library]] | Kernel interrupt reference |
+| [[Standard-Library]] | Kernel and software interrupt reference |
 
 ## What is AIL?
 
@@ -24,6 +24,46 @@ The Artemis Intermediate Language (AIL) is a low-level, register-based intermedi
 
 ```
 /source   — VM and runtime source code (.NET)
-/docs     — original .docx reference documents
+/docs     — original reference documents
 /wiki     — this wiki (mirror kept in the repo)
+/examples — sample .ail assembly programs
+```
+
+## Getting started
+
+### Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- Windows (for AIL Studio only; the VM library and runtime are cross-platform)
+
+### Build
+
+```sh
+dotnet build "Artemis IL.sln"
+```
+
+### Run the tests
+
+```sh
+dotnet test source/AIL-Tests/AIL-Tests.csproj
+```
+
+### Run the demo
+
+```sh
+dotnet run --project source/AIL-Runtime
+```
+
+Prints "Hello, World!" using the built-in demo program encoded directly as AIL bytecode.
+
+### Run a `.ail` file
+
+1. Open AIL Studio (`source/AIL-Studio`) on Windows.
+2. Open or type your AIL assembly source.
+3. Press **Build & Run** to assemble and execute, or **Debug** to step through instructions.
+
+Alternatively, assemble with AIL Studio and then pass the output `.ila` file to the runtime:
+
+```sh
+dotnet run --project source/AIL-Runtime -- myprogram.ila
 ```

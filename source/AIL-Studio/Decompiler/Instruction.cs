@@ -3,6 +3,11 @@ namespace AIL_Studio.Decompiler
     /// <summary>Maps Artemis-IL opcode bytes to their mnemonic strings.</summary>
     internal static class Instruction
     {
+        /// <summary>
+        /// Returns the assembly mnemonic for the given opcode byte
+        /// (e.g. <c>0x01</c> → <c>"MOV"</c>).
+        /// Returns an empty string for unrecognised opcodes.
+        /// </summary>
         public static string GetName(byte opcode) => opcode switch
         {
             // Register / memory
