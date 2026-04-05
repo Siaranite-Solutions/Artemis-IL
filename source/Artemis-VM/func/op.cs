@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     public partial class VM
     {
@@ -320,7 +320,7 @@ namespace Apollo_IL
 
             else
             {
-                throw new Exception("[ERROR] The instruction at " + IP + " (" + opcode + ") is not supported by the Apollo IL Runtime");
+                throw new Exception("[ERROR] The instruction at " + IP + " (" + opcode + ") is not supported by the Artemis IL Runtime");
             }
 
             NewIP = 0;

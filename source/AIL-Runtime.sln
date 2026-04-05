@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIL-Runtime", "AIL-Runtime\AIL-Runtime.csproj", "{74C55334-0799-4F75-85B0-552BF64EFDDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo_IL", "Apollo-IL\Apollo_IL.csproj", "{84DA7FF7-3C8F-468A-B5DB-C46EE01AE5CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemis_IL", "Artemis-VM\Artemis_IL.csproj", "{84DA7FF7-3C8F-468A-B5DB-C46EE01AE5CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

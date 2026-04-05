@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Apollo_IL.Conversions
+namespace Artemis_IL.Conversions
 {
     /// <summary>
     /// Contains the bool[] methods for joining two boolean arrays

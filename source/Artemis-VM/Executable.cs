@@ -3,7 +3,7 @@ using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     public class Executable
     {

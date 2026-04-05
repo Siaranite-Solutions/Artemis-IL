@@ -1,5 +1,5 @@
 ﻿using System;
-using Apollo_IL;
+using Artemis_IL;
 using System.IO;
 
 namespace AIL_Runtime
@@ -63,10 +63,10 @@ namespace AIL_Runtime
         static void Main(string[] args)
         {
             byte[] LoadedApplication = null;
-            Apollo_IL.Globals.console = new AIL_Runtime.AR_Console();
+            Artemis_IL.Globals.console = new AIL_Runtime.AR_Console();
             if (args.Length == 0)
             {
-                Console.Title = "Apollo-VM Runtime - Hello World!";
+                Console.Title = "Artemis-VM Runtime - Hello World!";
                 LoadedApplication = HelloWorld;
                 
             }
@@ -76,7 +76,7 @@ namespace AIL_Runtime
             }
             try
             {
-                Apollo_IL.Executable.Run(LoadedApplication);
+                Artemis_IL.Executable.Run(LoadedApplication);
             }
             catch (Exception ex)
             {

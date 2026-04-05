@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apollo_IL;
+using Artemis_IL;
 
 namespace AIL_Runtime
 {
-    public class AR_Console : Apollo_IL.Handlers.VConsole
+    public class AR_Console : Artemis_IL.Handlers.VConsole
 	{
 		public override void WriteLine(string text)
 		{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     /// <summary>
     /// Class containing methods for managing the call stack

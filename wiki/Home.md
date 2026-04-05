@@ -1,6 +1,6 @@
-# Apollo Intermediate Language
+# Artemis Intermediate Language
 
-Welcome to the AIL wiki. This wiki is the normative reference for the Apollo Intermediate Language virtual machine, its instruction set, standard library, and executable format.
+Welcome to the AIL wiki. This wiki is the normative reference for the Artemis Intermediate Language virtual machine, its instruction set, standard library, and executable format.
 
 ## Pages
 
@@ -11,7 +11,7 @@ Welcome to the AIL wiki. This wiki is the normative reference for the Apollo Int
 
 ## What is AIL?
 
-The Apollo Intermediate Language (AIL) is a low-level, register-based intermediate language designed for deterministic, portable execution across virtual machine implementations. It provides a stable compilation target independent of the underlying host architecture.
+The Artemis Intermediate Language (AIL) is a low-level, register-based intermediate language designed for deterministic, portable execution across virtual machine implementations. It provides a stable compilation target independent of the underlying host architecture.
 
 **Design goals:**
 

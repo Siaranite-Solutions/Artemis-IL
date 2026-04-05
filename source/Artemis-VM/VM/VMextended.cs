@@ -1,8 +1,8 @@
 using System;
-using Apollo_IL.StandardLib;
-using Apollo_IL.Conversions;
+using Artemis_IL.StandardLib;
+using Artemis_IL.Conversions;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     public partial class VM
     {
