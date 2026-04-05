@@ -5,6 +5,12 @@ using Artemis_IL.Handlers;
 
 namespace Artemis_IL
 {
+    /// <summary>
+    /// Process-wide settings shared by all VM components.
+    /// The runtime (AIL-Runtime) sets <see cref="console"/> to a real implementation
+    /// before executing any bytecode; the VM library ships with a <see cref="NullConsole"/>
+    /// default so that unit tests or headless hosts need not wire up I/O manually.
+    /// </summary>
     public static class Globals
     {
         /// <summary>
@@ -13,6 +19,12 @@ namespace Artemis_IL
         /// </summary>
         /// <returns>An empty console that provides no I/O</returns>
         public static VConsole console = new NullConsole();
+
+        /// <summary>
+        /// When <c>true</c>, the VM and standard-library interrupts emit additional
+        /// diagnostic output (e.g. "KEI 0x01: ...") to <see cref="console"/>.
+        /// Set to <c>false</c> for normal execution.
+        /// </summary>
         public static bool DebugMode = true;
     }
 }
