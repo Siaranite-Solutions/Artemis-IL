@@ -55,6 +55,11 @@ namespace Artemis_IL.StandardLib
                     ParentVM.SetSplit('B', toWrite.Length);
                     ParentVM.ram.SetSection(ParentVM.X, toWrite);
                 }
+                else if (ParentVM.AL == 0x05)
+                {
+                    // Print the 16-bit value in register B as a decimal integer
+                    Globals.console.Write(ParentVM.GetSplit('B').ToString());
+                }
             }
             else if (command == 0x02)
             {

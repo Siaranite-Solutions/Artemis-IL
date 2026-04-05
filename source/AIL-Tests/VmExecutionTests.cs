@@ -176,8 +176,8 @@ KEI 0x02
         }
 
         /// <summary>
-        /// TEQ + JMF: when AL != AH (values differ) JMF does NOT fire, the instruction
-        /// after the jump executes and sets AL to 0xFF.
+        /// TEQ + JMT: when AL != AH (values differ) JMT does NOT fire (it only fires on
+        /// equality), so execution falls through to the MOV that sets AL to 0xFF.
         /// </summary>
         [Fact]
         public void ConditionalJump_FallsThroughWhenNotEqual()
@@ -186,7 +186,7 @@ KEI 0x02
 MOV AL, 1
 MOV AH, 2
 TEQ AL, AH
-JMF skip
+JMT skip
 MOV AL, 0xFF
 skip:
 KEI 0x02
@@ -348,6 +348,200 @@ KEI 0x02
         public void Compiler_ThrowsOnEmptySource()
         {
             Assert.Throws<BuildException>(() => new Compiler("").Compile());
+        }
+
+        // ── Hello, World! via DB directive ───────────────────────────────────────
+
+        /// <summary>
+        /// Hello World using a DB string literal: the string data is defined inline
+        /// in the source (like the x86 <c>db</c> directive), then printed via
+        /// KEI 0x01 in write-string mode (AL = 0x02, X = address, BL = length).
+        ///
+        /// Program layout:
+        ///   JMP main            ; skip over data
+        ///   hello:
+        ///   DB "Hello, World", 0x0A, 0x00   ; 14 bytes of data
+        ///   main:
+        ///   MOV AL, 0x02 / MOV X, hello / MOV BL, 13 / KEI 0x01 / KEI 0x02
+        /// </summary>
+        [Fact]
+        public void HelloWorldDb_OutputsHelloWorldNewline()
+        {
+            const string source = @"
+JMP main
+
+hello:
+DB ""Hello, World"", 0x0A, 0x00
+
+main:
+MOV AL, 0x02
+MOV X, hello
+MOV BL, 13
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("Hello, World\nHalting!\n", _console.Output);
+        }
+
+        // ── Simple calculator ────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Simple calculator: computes 3 + 4, prints "3 + 4 = 7" followed by a
+        /// newline, then halts.  The result (7) is printed via KEI 0x01 AL=0x05
+        /// which writes register B as a decimal integer.
+        /// </summary>
+        [Fact]
+        public void Calculator_Addition_PrintsExpression()
+        {
+            const string source = @"
+; Print ""3 + 4 = ""
+MOV AL, 0x01
+MOV AH, '3'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '+'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '4'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '='
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+; Compute 3 + 4 into BL
+MOV BL, 3
+ADD BL, 4
+; Print result (register B) as a decimal integer
+MOV AL, 0x05
+KEI 0x01
+; Print newline
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("3 + 4 = 7\nHalting!\n", _console.Output);
+        }
+
+        /// <summary>
+        /// Calculator subtraction: 10 - 3 = 7.
+        /// </summary>
+        [Fact]
+        public void Calculator_Subtraction_PrintsExpression()
+        {
+            const string source = @"
+MOV AL, 0x01
+MOV AH, '1'
+KEI 0x01
+MOV AH, '0'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '-'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '3'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '='
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV BL, 10
+SUB BL, 3
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("10 - 3 = 7\nHalting!\n", _console.Output);
+        }
+
+        /// <summary>
+        /// Calculator multiplication: 6 * 7 = 42.
+        /// </summary>
+        [Fact]
+        public void Calculator_Multiplication_PrintsExpression()
+        {
+            const string source = @"
+MOV AL, 0x01
+MOV AH, '6'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '*'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '7'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '='
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV BL, 6
+MUL BL, 7
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("6 * 7 = 42\nHalting!\n", _console.Output);
+        }
+
+        /// <summary>
+        /// Calculator division: 20 / 4 = 5.
+        /// </summary>
+        [Fact]
+        public void Calculator_Division_PrintsExpression()
+        {
+            const string source = @"
+MOV AL, 0x01
+MOV AH, '2'
+KEI 0x01
+MOV AH, '0'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '/'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '4'
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV AH, '='
+KEI 0x01
+MOV AH, ' '
+KEI 0x01
+MOV BL, 20
+DIV BL, 4
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("20 / 4 = 5\nHalting!\n", _console.Output);
         }
     }
 }

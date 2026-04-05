@@ -165,5 +165,60 @@ MOV AL, 1
             byte[] code = Compile(source);
             Assert.Equal(6, code.Length);
         }
+
+        // ── DB pseudo-instruction ────────────────────────────────────────────────
+
+        /// <summary>
+        /// DB with a string literal emits the correct raw bytes.
+        /// <c>DB "Hi", 0x0A, 0x00</c> must produce exactly 4 bytes: 0x48 0x69 0x0A 0x00.
+        /// </summary>
+        [Fact]
+        public void Db_StringLiteral_EmitsRawBytes()
+        {
+            byte[] code = Compile(@"DB ""Hi"", 0x0A, 0x00");
+            Assert.Equal(4, code.Length);
+            Assert.Equal(0x48, code[0]); // 'H'
+            Assert.Equal(0x69, code[1]); // 'i'
+            Assert.Equal(0x0A, code[2]); // newline
+            Assert.Equal(0x00, code[3]); // null terminator
+        }
+
+        /// <summary>
+        /// A label pointing to a DB section must resolve to the correct byte offset.
+        /// Layout: JMP main (6 bytes) | hello: DB "AB" (2 bytes) | main: KEI 0x02 (6 bytes).
+        /// The JMP target (main) must be at byte offset 8.
+        /// </summary>
+        [Fact]
+        public void Db_LabelAfterDb_ResolvesToCorrectOffset()
+        {
+            const string source = @"
+JMP main
+hello:
+DB ""AB""
+main:
+KEI 0x02
+";
+            byte[] code = Compile(source);
+
+            // JMP is bytes 0-5.  Its param2 must equal 8 (offset of main = 6+2).
+            int jumpTarget = code[2]
+                           | (code[3] << 8)
+                           | (code[4] << 16)
+                           | (code[5] << 24);
+            Assert.Equal(8, jumpTarget);
+        }
+
+        /// <summary>
+        /// DB with char literals emits the correct bytes.
+        /// </summary>
+        [Fact]
+        public void Db_CharLiterals_EmitsRawBytes()
+        {
+            byte[] code = Compile(@"DB 'A', '\n', 0x00");
+            Assert.Equal(3, code.Length);
+            Assert.Equal(0x41, code[0]); // 'A'
+            Assert.Equal(0x0A, code[1]); // '\n'
+            Assert.Equal(0x00, code[2]); // null
+        }
     }
 }
