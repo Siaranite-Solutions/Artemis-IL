@@ -64,3 +64,40 @@ KEI 0x02
 ## Undefined interrupts
 
 Any interrupt number not listed above causes the VM to print a diagnostic message and halt. Do not rely on this behaviour — it is subject to change.
+
+---
+
+## SWI 0x01 — String utilities
+
+Software interrupt for basic string operations. Invoke with `SWI 0x01`; `AL` selects the operation.
+
+| AL     | Operation   | Inputs                              | Outputs                  | Description                                              |
+|--------|-------------|-------------------------------------|--------------------------|----------------------------------------------------------|
+| `0x01` | String length | `X` = address of null-terminated string | `B` = length in bytes | Counts bytes until a `0x00` terminator; result in `B`. |
+| `0x02` | String copy | `X` = source address, `Y` = destination address, `B` = byte count | — | Copies `B` bytes from `X` to `Y`. |
+
+### Examples
+
+**Get length of a null-terminated string at `0x0300`:**
+```
+MOV AL, 0x01
+MOV X,  0x0300
+SWI 0x01
+; B now contains the string length
+```
+
+**Copy 5 bytes from `0x0300` to `0x0400`:**
+```
+MOV AL, 0x02
+MOV X,  0x0300
+MOV Y,  0x0400
+MOV B,  5
+SWI 0x01
+```
+
+---
+
+## Undefined SWI numbers
+
+Any SWI number not listed above causes the VM to print a diagnostic message and halt.
+
