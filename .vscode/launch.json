@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch AIL-Runtime",
+            "name": "Launch AIL-Runtime (Debug)",
             "type": "dotnet",
             "request": "launch",
             "projectPath": "${workspaceFolder}/source/AIL-Runtime/AIL-Runtime.csproj",
@@ -12,7 +12,28 @@
             "stopAtEntry": false
         },
         {
-            "name": "Attach to AIL-Runtime",
+            "name": "Launch AIL-Runtime (Release)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/source/AIL-Runtime/AIL-Runtime.csproj",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "launchConfiguration": "Release"
+        },
+        {
+            "name": "Launch AIL-Studio (Debug, Windows)",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/source/AIL-Studio/AIL-Studio.csproj",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Attach to process",
             "type": "dotnet",
             "request": "attach",
             "processId": "${command:pickProcess}"
