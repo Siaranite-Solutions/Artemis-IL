@@ -1,9 +1,9 @@
 using System;
 using System.Text;
 using System.Linq;
-using Apollo_IL.Handlers;
+using Artemis_IL.Handlers;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     public static class Globals
     {

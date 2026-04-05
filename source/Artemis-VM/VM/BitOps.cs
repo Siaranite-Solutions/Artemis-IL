@@ -1,11 +1,11 @@
 using System;
-using Apollo_IL.StandardLib;
-using Apollo_IL.Conversions;
+using Artemis_IL.StandardLib;
+using Artemis_IL.Conversions;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Apollo_IL
+namespace Artemis_IL
 {
     public static class BitOps
     {

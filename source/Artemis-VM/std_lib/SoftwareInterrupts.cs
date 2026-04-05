@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Apollo_IL.StandardLib
+namespace Artemis_IL.StandardLib
 {
     class SoftwareInterrupts
     {

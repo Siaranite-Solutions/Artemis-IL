@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Apollo_IL.Handlers
+namespace Artemis_IL.Handlers
 {
     public class NullConsole : VConsole
     {
