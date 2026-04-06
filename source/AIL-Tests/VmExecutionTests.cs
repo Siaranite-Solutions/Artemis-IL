@@ -30,7 +30,7 @@ namespace AIL_Tests
             Artemis_IL.Globals.DebugMode = false;
             _console.Reset();
 
-            var vm = new VM(code, 65536);
+            var vm = new VM(code, Globals.DefaultRamSize);
             vm.Execute();
             return vm;
         }
@@ -543,6 +543,58 @@ KEI 0x02
 ";
             CompileAndRun(source);
             Assert.Equal("20 / 4 = 5\nHalting!\n", _console.Output);
+        }
+
+        /// <summary>
+        /// Full calculator: runs ADD, SUB, MUL, and DIV in a single program to verify
+        /// that all four arithmetic operations execute correctly in the same executable.
+        /// Each result is printed on its own line via KEI 0x01 AL=0x05 (write-integer mode).
+        /// Expected output: "7\n7\n42\n5\nHalting!\n"
+        ///
+        /// Note: PC and IP are byte-sized registers (0–255), so the instruction pointer
+        /// wraps at 256 bytes regardless of RAM size. Each operation block uses 7
+        /// instructions (42 bytes), keeping the total program well within that limit.
+        /// </summary>
+        [Fact]
+        public void Calculator_AllOperations_PrintsAllResults()
+        {
+            const string source = @"
+; ADD: 3 + 4 = 7
+MOV BL, 3
+ADD BL, 4
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+; SUB: 10 - 3 = 7
+MOV BL, 10
+SUB BL, 3
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+; MUL: 6 * 7 = 42
+MOV BL, 6
+MUL BL, 7
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+; DIV: 20 / 4 = 5
+MOV BL, 20
+DIV BL, 4
+MOV AL, 0x05
+KEI 0x01
+MOV AL, 0x01
+MOV AH, 0x0A
+KEI 0x01
+KEI 0x02
+";
+            CompileAndRun(source);
+            Assert.Equal("7\n7\n42\n5\nHalting!\n", _console.Output);
         }
     }
 }
