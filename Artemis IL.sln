@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIL-Runtime", "source\AIL-R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIL-Studio", "source\AIL-Studio\AIL-Studio.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIL-Tests", "source\AIL-Tests\AIL-Tests.csproj", "{FBF8F0E3-3890-4EDC-B94A-A8FF1A3B441B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF8F0E3-3890-4EDC-B94A-A8FF1A3B441B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF8F0E3-3890-4EDC-B94A-A8FF1A3B441B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF8F0E3-3890-4EDC-B94A-A8FF1A3B441B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF8F0E3-3890-4EDC-B94A-A8FF1A3B441B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

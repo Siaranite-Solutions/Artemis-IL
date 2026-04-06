@@ -3,6 +3,10 @@ namespace AIL_Studio.Decompiler
     /// <summary>Maps Artemis-IL register identifier bytes back to their names.</summary>
     internal static class Registers
     {
+        /// <summary>
+        /// Returns the register name for the given identifier byte (e.g. <c>0xF5</c> → <c>"AL"</c>).
+        /// Returns an empty string for unrecognised bytes.
+        /// </summary>
         public static string GetName(byte b) => b switch
         {
             0xF0 => "PC",
@@ -23,6 +27,10 @@ namespace AIL_Studio.Decompiler
             _    => "",
         };
 
+        /// <summary>
+        /// Returns <c>true</c> when <paramref name="b"/> is a valid register identifier byte
+        /// (i.e. in the range <c>0xF0</c>–<c>0xFE</c>).
+        /// </summary>
         public static bool IsRegister(byte b) => b >= 0xF0;
     }
 }
