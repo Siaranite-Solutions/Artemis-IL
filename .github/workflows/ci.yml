@@ -11,6 +11,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-and-test:
     name: Build & Test (.NET 8)
@@ -34,7 +37,7 @@ jobs:
       - name: Run tests
         run: >
           dotnet test source/AIL-Tests/AIL-Tests.csproj
-          --no-build
+          --no-restore
           --configuration Release
           --logger "trx;LogFileName=test-results.trx"
           --logger "console;verbosity=normal"
