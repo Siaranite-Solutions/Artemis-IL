@@ -66,9 +66,9 @@ inline int run_all() {
 
 // Register a named test.  Body follows as a lambda block { ... }.
 #define TEST(name)                                                         \
-    static void _ail_test_body_##name();                                   \
-    static ail::test::Registrar _ail_reg_##name(#name, _ail_test_body_##name); \
-    static void _ail_test_body_##name()
+    static void ail_test_body_##name();                                    \
+    static ail::test::Registrar ail_test_reg_##name(#name, ail_test_body_##name); \
+    static void ail_test_body_##name()
 
 // Assert a boolean expression; stop this test on failure.
 #define REQUIRE(expr)                                                      \

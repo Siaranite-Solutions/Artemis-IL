@@ -35,7 +35,7 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
-Artefacts produced in `build/`:
+Artifacts produced in `build/`:
 
 | File | Description |
 |---|---|

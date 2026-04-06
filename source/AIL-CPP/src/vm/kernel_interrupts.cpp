@@ -33,8 +33,6 @@ void KernelInterrupts::handleInterrupt(VM& vm, int command) {
             int n    = 0;
             int ch;
             while ((ch = AIL_GETCHAR()) != EOF && ch != '\n') {
-                vm.ram.setSection(base + n, reinterpret_cast<const uint8_t*>("\0"), 0);
-                // Write byte directly (within data area — setSection bypasses guard)
                 if (base + n < RAM::SIZE)
                     vm.ram.memory[base + n] = static_cast<uint8_t>(ch);
                 ++n;
