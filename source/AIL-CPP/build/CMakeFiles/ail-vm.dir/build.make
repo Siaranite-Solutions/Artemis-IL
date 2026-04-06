@@ -142,10 +142,24 @@ CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/kernel_interrupts.cpp -o CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.s
 
+CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o: CMakeFiles/ail-vm.dir/flags.make
+CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o: /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/software_interrupts.cpp
+CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o: CMakeFiles/ail-vm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o -MF CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o.d -o CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o -c /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/software_interrupts.cpp
+
+CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/software_interrupts.cpp > CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.i
+
+CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/software_interrupts.cpp -o CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.s
+
 CMakeFiles/ail-vm.dir/src/executable.cpp.o: CMakeFiles/ail-vm.dir/flags.make
 CMakeFiles/ail-vm.dir/src/executable.cpp.o: /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/executable.cpp
 CMakeFiles/ail-vm.dir/src/executable.cpp.o: CMakeFiles/ail-vm.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ail-vm.dir/src/executable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ail-vm.dir/src/executable.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ail-vm.dir/src/executable.cpp.o -MF CMakeFiles/ail-vm.dir/src/executable.cpp.o.d -o CMakeFiles/ail-vm.dir/src/executable.cpp.o -c /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/executable.cpp
 
 CMakeFiles/ail-vm.dir/src/executable.cpp.i: cmake_force
@@ -163,6 +177,7 @@ ail__vm_OBJECTS = \
 "CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o" \
 "CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o" \
 "CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o" \
+"CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o" \
 "CMakeFiles/ail-vm.dir/src/executable.cpp.o"
 
 # External object files for target ail-vm
@@ -173,10 +188,11 @@ libail-vm.a: CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.o
 libail-vm.a: CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o
 libail-vm.a: CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o
 libail-vm.a: CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o
+libail-vm.a: CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o
 libail-vm.a: CMakeFiles/ail-vm.dir/src/executable.cpp.o
 libail-vm.a: CMakeFiles/ail-vm.dir/build.make
 libail-vm.a: CMakeFiles/ail-vm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libail-vm.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libail-vm.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/ail-vm.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ail-vm.dir/link.txt --verbose=$(VERBOSE)
 

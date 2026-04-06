@@ -1,6 +1,7 @@
 #include "ail/vm/kernel_interrupts.hpp"
 #include "ail/vm/vm.hpp"
 #include "ail/config.hpp"
+#include <cstdio> // EOF
 
 namespace ail {
 

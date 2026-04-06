@@ -43,5 +43,6 @@ CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o: \
  /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/vm/call_stack.hpp \
  /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/address_mode.hpp \
  /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/vm/kernel_interrupts.hpp \
+ /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/vm/software_interrupts.hpp \
  /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/registers.hpp \
  /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/include/ail/opcodes.hpp

@@ -1,5 +1,6 @@
 #include "ail/vm/vm.hpp"
 #include "ail/vm/kernel_interrupts.hpp"
+#include "ail/vm/software_interrupts.hpp"
 #include "ail/registers.hpp"
 #include "ail/opcodes.hpp"
 
@@ -305,8 +306,11 @@ VMError VM::parseOpcode(uint8_t opcode) {
 
     // ── Interrupts ─────────────────────────────────────────────────────────────
 
-    case Opcodes::SWI: // 0x2A — software interrupt (not yet implemented)
+    case Opcodes::SWI: { // 0x2A — software interrupt
+        int cmd = static_cast<int>(ram.memory[IP + 1]);
+        SoftwareInterrupts::handleInterrupt(*this, cmd);
         PC += 5; break;
+    }
 
     case Opcodes::KEI: { // 0x2B — kernel interrupt
         int cmd = static_cast<int>(ram.memory[IP + 1]);

@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/local/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -213,12 +223,26 @@ ailcpp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ailcpp.dir/build.make CMakeFiles/ailcpp.dir/build
 .PHONY : ailcpp/fast
 
+#=============================================================================
+# Target rules for targets named ail-tests
+
+# Build rule for target.
+ail-tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ail-tests
+.PHONY : ail-tests
+
+# fast build rule for target.
+ail-tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/build
+.PHONY : ail-tests/fast
+
 src/compiler/compiler.o: src/compiler/compiler.cpp.o
 .PHONY : src/compiler/compiler.o
 
 # target to build an object file
 src/compiler/compiler.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/compiler.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/compiler.cpp.o
 .PHONY : src/compiler/compiler.cpp.o
 
 src/compiler/compiler.i: src/compiler/compiler.cpp.i
@@ -227,6 +251,7 @@ src/compiler/compiler.i: src/compiler/compiler.cpp.i
 # target to preprocess a source file
 src/compiler/compiler.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/compiler.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/compiler.cpp.i
 .PHONY : src/compiler/compiler.cpp.i
 
 src/compiler/compiler.s: src/compiler/compiler.cpp.s
@@ -235,6 +260,7 @@ src/compiler/compiler.s: src/compiler/compiler.cpp.s
 # target to generate assembly for a file
 src/compiler/compiler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/compiler.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/compiler.cpp.s
 .PHONY : src/compiler/compiler.cpp.s
 
 src/compiler/instruction.o: src/compiler/instruction.cpp.o
@@ -243,6 +269,7 @@ src/compiler/instruction.o: src/compiler/instruction.cpp.o
 # target to build an object file
 src/compiler/instruction.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/instruction.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/instruction.cpp.o
 .PHONY : src/compiler/instruction.cpp.o
 
 src/compiler/instruction.i: src/compiler/instruction.cpp.i
@@ -251,6 +278,7 @@ src/compiler/instruction.i: src/compiler/instruction.cpp.i
 # target to preprocess a source file
 src/compiler/instruction.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/instruction.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/instruction.cpp.i
 .PHONY : src/compiler/instruction.cpp.i
 
 src/compiler/instruction.s: src/compiler/instruction.cpp.s
@@ -259,6 +287,7 @@ src/compiler/instruction.s: src/compiler/instruction.cpp.s
 # target to generate assembly for a file
 src/compiler/instruction.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-compiler.dir/build.make CMakeFiles/ail-compiler.dir/src/compiler/instruction.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/compiler/instruction.cpp.s
 .PHONY : src/compiler/instruction.cpp.s
 
 src/decompiler/decompiler.o: src/decompiler/decompiler.cpp.o
@@ -267,6 +296,7 @@ src/decompiler/decompiler.o: src/decompiler/decompiler.cpp.o
 # target to build an object file
 src/decompiler/decompiler.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-decompiler.dir/build.make CMakeFiles/ail-decompiler.dir/src/decompiler/decompiler.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/decompiler/decompiler.cpp.o
 .PHONY : src/decompiler/decompiler.cpp.o
 
 src/decompiler/decompiler.i: src/decompiler/decompiler.cpp.i
@@ -275,6 +305,7 @@ src/decompiler/decompiler.i: src/decompiler/decompiler.cpp.i
 # target to preprocess a source file
 src/decompiler/decompiler.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-decompiler.dir/build.make CMakeFiles/ail-decompiler.dir/src/decompiler/decompiler.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/decompiler/decompiler.cpp.i
 .PHONY : src/decompiler/decompiler.cpp.i
 
 src/decompiler/decompiler.s: src/decompiler/decompiler.cpp.s
@@ -283,6 +314,7 @@ src/decompiler/decompiler.s: src/decompiler/decompiler.cpp.s
 # target to generate assembly for a file
 src/decompiler/decompiler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-decompiler.dir/build.make CMakeFiles/ail-decompiler.dir/src/decompiler/decompiler.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/decompiler/decompiler.cpp.s
 .PHONY : src/decompiler/decompiler.cpp.s
 
 src/executable.o: src/executable.cpp.o
@@ -291,6 +323,7 @@ src/executable.o: src/executable.cpp.o
 # target to build an object file
 src/executable.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/executable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/executable.cpp.o
 .PHONY : src/executable.cpp.o
 
 src/executable.i: src/executable.cpp.i
@@ -299,6 +332,7 @@ src/executable.i: src/executable.cpp.i
 # target to preprocess a source file
 src/executable.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/executable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/executable.cpp.i
 .PHONY : src/executable.cpp.i
 
 src/executable.s: src/executable.cpp.s
@@ -307,6 +341,7 @@ src/executable.s: src/executable.cpp.s
 # target to generate assembly for a file
 src/executable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/executable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/executable.cpp.s
 .PHONY : src/executable.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -339,6 +374,7 @@ src/vm/call_stack.o: src/vm/call_stack.cpp.o
 # target to build an object file
 src/vm/call_stack.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/call_stack.cpp.o
 .PHONY : src/vm/call_stack.cpp.o
 
 src/vm/call_stack.i: src/vm/call_stack.cpp.i
@@ -347,6 +383,7 @@ src/vm/call_stack.i: src/vm/call_stack.cpp.i
 # target to preprocess a source file
 src/vm/call_stack.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/call_stack.cpp.i
 .PHONY : src/vm/call_stack.cpp.i
 
 src/vm/call_stack.s: src/vm/call_stack.cpp.s
@@ -355,6 +392,7 @@ src/vm/call_stack.s: src/vm/call_stack.cpp.s
 # target to generate assembly for a file
 src/vm/call_stack.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/call_stack.cpp.s
 .PHONY : src/vm/call_stack.cpp.s
 
 src/vm/kernel_interrupts.o: src/vm/kernel_interrupts.cpp.o
@@ -363,6 +401,7 @@ src/vm/kernel_interrupts.o: src/vm/kernel_interrupts.cpp.o
 # target to build an object file
 src/vm/kernel_interrupts.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/kernel_interrupts.cpp.o
 .PHONY : src/vm/kernel_interrupts.cpp.o
 
 src/vm/kernel_interrupts.i: src/vm/kernel_interrupts.cpp.i
@@ -371,6 +410,7 @@ src/vm/kernel_interrupts.i: src/vm/kernel_interrupts.cpp.i
 # target to preprocess a source file
 src/vm/kernel_interrupts.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/kernel_interrupts.cpp.i
 .PHONY : src/vm/kernel_interrupts.cpp.i
 
 src/vm/kernel_interrupts.s: src/vm/kernel_interrupts.cpp.s
@@ -379,6 +419,7 @@ src/vm/kernel_interrupts.s: src/vm/kernel_interrupts.cpp.s
 # target to generate assembly for a file
 src/vm/kernel_interrupts.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/kernel_interrupts.cpp.s
 .PHONY : src/vm/kernel_interrupts.cpp.s
 
 src/vm/ram.o: src/vm/ram.cpp.o
@@ -387,6 +428,7 @@ src/vm/ram.o: src/vm/ram.cpp.o
 # target to build an object file
 src/vm/ram.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/ram.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/ram.cpp.o
 .PHONY : src/vm/ram.cpp.o
 
 src/vm/ram.i: src/vm/ram.cpp.i
@@ -395,6 +437,7 @@ src/vm/ram.i: src/vm/ram.cpp.i
 # target to preprocess a source file
 src/vm/ram.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/ram.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/ram.cpp.i
 .PHONY : src/vm/ram.cpp.i
 
 src/vm/ram.s: src/vm/ram.cpp.s
@@ -403,7 +446,35 @@ src/vm/ram.s: src/vm/ram.cpp.s
 # target to generate assembly for a file
 src/vm/ram.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/ram.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/ram.cpp.s
 .PHONY : src/vm/ram.cpp.s
+
+src/vm/software_interrupts.o: src/vm/software_interrupts.cpp.o
+.PHONY : src/vm/software_interrupts.o
+
+# target to build an object file
+src/vm/software_interrupts.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/software_interrupts.cpp.o
+.PHONY : src/vm/software_interrupts.cpp.o
+
+src/vm/software_interrupts.i: src/vm/software_interrupts.cpp.i
+.PHONY : src/vm/software_interrupts.i
+
+# target to preprocess a source file
+src/vm/software_interrupts.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/software_interrupts.cpp.i
+.PHONY : src/vm/software_interrupts.cpp.i
+
+src/vm/software_interrupts.s: src/vm/software_interrupts.cpp.s
+.PHONY : src/vm/software_interrupts.s
+
+# target to generate assembly for a file
+src/vm/software_interrupts.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/software_interrupts.cpp.s
+.PHONY : src/vm/software_interrupts.cpp.s
 
 src/vm/vm.o: src/vm/vm.cpp.o
 .PHONY : src/vm/vm.o
@@ -411,6 +482,7 @@ src/vm/vm.o: src/vm/vm.cpp.o
 # target to build an object file
 src/vm/vm.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm.cpp.o
 .PHONY : src/vm/vm.cpp.o
 
 src/vm/vm.i: src/vm/vm.cpp.i
@@ -419,6 +491,7 @@ src/vm/vm.i: src/vm/vm.cpp.i
 # target to preprocess a source file
 src/vm/vm.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm.cpp.i
 .PHONY : src/vm/vm.cpp.i
 
 src/vm/vm.s: src/vm/vm.cpp.s
@@ -427,6 +500,7 @@ src/vm/vm.s: src/vm/vm.cpp.s
 # target to generate assembly for a file
 src/vm/vm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm.cpp.s
 .PHONY : src/vm/vm.cpp.s
 
 src/vm/vm_ops.o: src/vm/vm_ops.cpp.o
@@ -435,6 +509,7 @@ src/vm/vm_ops.o: src/vm/vm_ops.cpp.o
 # target to build an object file
 src/vm/vm_ops.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm_ops.cpp.o
 .PHONY : src/vm/vm_ops.cpp.o
 
 src/vm/vm_ops.i: src/vm/vm_ops.cpp.i
@@ -443,6 +518,7 @@ src/vm/vm_ops.i: src/vm/vm_ops.cpp.i
 # target to preprocess a source file
 src/vm/vm_ops.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm_ops.cpp.i
 .PHONY : src/vm/vm_ops.cpp.i
 
 src/vm/vm_ops.s: src/vm/vm_ops.cpp.s
@@ -451,7 +527,152 @@ src/vm/vm_ops.s: src/vm/vm_ops.cpp.s
 # target to generate assembly for a file
 src/vm/vm_ops.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-vm.dir/build.make CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/src/vm/vm_ops.cpp.s
 .PHONY : src/vm/vm_ops.cpp.s
+
+tests/io_capture.o: tests/io_capture.cpp.o
+.PHONY : tests/io_capture.o
+
+# target to build an object file
+tests/io_capture.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/io_capture.cpp.o
+.PHONY : tests/io_capture.cpp.o
+
+tests/io_capture.i: tests/io_capture.cpp.i
+.PHONY : tests/io_capture.i
+
+# target to preprocess a source file
+tests/io_capture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/io_capture.cpp.i
+.PHONY : tests/io_capture.cpp.i
+
+tests/io_capture.s: tests/io_capture.cpp.s
+.PHONY : tests/io_capture.s
+
+# target to generate assembly for a file
+tests/io_capture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/io_capture.cpp.s
+.PHONY : tests/io_capture.cpp.s
+
+tests/main.o: tests/main.cpp.o
+.PHONY : tests/main.o
+
+# target to build an object file
+tests/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/main.cpp.o
+.PHONY : tests/main.cpp.o
+
+tests/main.i: tests/main.cpp.i
+.PHONY : tests/main.i
+
+# target to preprocess a source file
+tests/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/main.cpp.i
+.PHONY : tests/main.cpp.i
+
+tests/main.s: tests/main.cpp.s
+.PHONY : tests/main.s
+
+# target to generate assembly for a file
+tests/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/main.cpp.s
+.PHONY : tests/main.cpp.s
+
+tests/test_compiler.o: tests/test_compiler.cpp.o
+.PHONY : tests/test_compiler.o
+
+# target to build an object file
+tests/test_compiler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_compiler.cpp.o
+.PHONY : tests/test_compiler.cpp.o
+
+tests/test_compiler.i: tests/test_compiler.cpp.i
+.PHONY : tests/test_compiler.i
+
+# target to preprocess a source file
+tests/test_compiler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_compiler.cpp.i
+.PHONY : tests/test_compiler.cpp.i
+
+tests/test_compiler.s: tests/test_compiler.cpp.s
+.PHONY : tests/test_compiler.s
+
+# target to generate assembly for a file
+tests/test_compiler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_compiler.cpp.s
+.PHONY : tests/test_compiler.cpp.s
+
+tests/test_executable.o: tests/test_executable.cpp.o
+.PHONY : tests/test_executable.o
+
+# target to build an object file
+tests/test_executable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_executable.cpp.o
+.PHONY : tests/test_executable.cpp.o
+
+tests/test_executable.i: tests/test_executable.cpp.i
+.PHONY : tests/test_executable.i
+
+# target to preprocess a source file
+tests/test_executable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_executable.cpp.i
+.PHONY : tests/test_executable.cpp.i
+
+tests/test_executable.s: tests/test_executable.cpp.s
+.PHONY : tests/test_executable.s
+
+# target to generate assembly for a file
+tests/test_executable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_executable.cpp.s
+.PHONY : tests/test_executable.cpp.s
+
+tests/test_round_trip.o: tests/test_round_trip.cpp.o
+.PHONY : tests/test_round_trip.o
+
+# target to build an object file
+tests/test_round_trip.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_round_trip.cpp.o
+.PHONY : tests/test_round_trip.cpp.o
+
+tests/test_round_trip.i: tests/test_round_trip.cpp.i
+.PHONY : tests/test_round_trip.i
+
+# target to preprocess a source file
+tests/test_round_trip.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_round_trip.cpp.i
+.PHONY : tests/test_round_trip.cpp.i
+
+tests/test_round_trip.s: tests/test_round_trip.cpp.s
+.PHONY : tests/test_round_trip.s
+
+# target to generate assembly for a file
+tests/test_round_trip.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_round_trip.cpp.s
+.PHONY : tests/test_round_trip.cpp.s
+
+tests/test_vm.o: tests/test_vm.cpp.o
+.PHONY : tests/test_vm.o
+
+# target to build an object file
+tests/test_vm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_vm.cpp.o
+.PHONY : tests/test_vm.cpp.o
+
+tests/test_vm.i: tests/test_vm.cpp.i
+.PHONY : tests/test_vm.i
+
+# target to preprocess a source file
+tests/test_vm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_vm.cpp.i
+.PHONY : tests/test_vm.cpp.i
+
+tests/test_vm.s: tests/test_vm.cpp.s
+.PHONY : tests/test_vm.s
+
+# target to generate assembly for a file
+tests/test_vm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ail-tests.dir/build.make CMakeFiles/ail-tests.dir/tests/test_vm.cpp.s
+.PHONY : tests/test_vm.cpp.s
 
 # Help Target
 help:
@@ -465,8 +686,10 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... ail-compiler"
 	@echo "... ail-decompiler"
+	@echo "... ail-tests"
 	@echo "... ail-vm"
 	@echo "... ailcpp"
 	@echo "... src/compiler/compiler.o"
@@ -493,12 +716,33 @@ help:
 	@echo "... src/vm/ram.o"
 	@echo "... src/vm/ram.i"
 	@echo "... src/vm/ram.s"
+	@echo "... src/vm/software_interrupts.o"
+	@echo "... src/vm/software_interrupts.i"
+	@echo "... src/vm/software_interrupts.s"
 	@echo "... src/vm/vm.o"
 	@echo "... src/vm/vm.i"
 	@echo "... src/vm/vm.s"
 	@echo "... src/vm/vm_ops.o"
 	@echo "... src/vm/vm_ops.i"
 	@echo "... src/vm/vm_ops.s"
+	@echo "... tests/io_capture.o"
+	@echo "... tests/io_capture.i"
+	@echo "... tests/io_capture.s"
+	@echo "... tests/main.o"
+	@echo "... tests/main.i"
+	@echo "... tests/main.s"
+	@echo "... tests/test_compiler.o"
+	@echo "... tests/test_compiler.i"
+	@echo "... tests/test_compiler.s"
+	@echo "... tests/test_executable.o"
+	@echo "... tests/test_executable.i"
+	@echo "... tests/test_executable.s"
+	@echo "... tests/test_round_trip.o"
+	@echo "... tests/test_round_trip.i"
+	@echo "... tests/test_round_trip.s"
+	@echo "... tests/test_vm.o"
+	@echo "... tests/test_vm.i"
+	@echo "... tests/test_vm.s"
 .PHONY : help
 
 

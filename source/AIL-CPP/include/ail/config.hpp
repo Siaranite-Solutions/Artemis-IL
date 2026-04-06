@@ -59,6 +59,33 @@
 #endif
 
 // ----------------------------------------------------------------------------
+// Test-mode I/O capture
+// Defining AIL_TEST_MODE replaces all I/O macros with calls into a small
+// capture buffer so unit tests can assert on VM output without touching stdio.
+// The buffer is implemented in tests/io_capture.cpp.
+// ----------------------------------------------------------------------------
+#ifdef AIL_TEST_MODE
+extern "C" void ail_test_write(char c);
+extern "C" int  ail_test_read(void);
+extern "C" void ail_test_puts(const char* s);
+#  ifndef AIL_PUTCHAR
+#    define AIL_PUTCHAR(c)   ail_test_write(static_cast<char>(c))
+#  endif
+#  ifndef AIL_GETCHAR
+#    define AIL_GETCHAR()    ail_test_read()
+#  endif
+#  ifndef AIL_PUTS
+#    define AIL_PUTS(s)      ail_test_puts(s)
+#  endif
+#  ifndef AIL_PRINTF
+#    include <cstdio>
+#    define AIL_PRINTF(fmt, ...) \
+         do { char _b[512]; snprintf(_b, sizeof(_b), fmt, ##__VA_ARGS__); \
+              ail_test_puts(_b); } while(0)
+#  endif
+#endif
+
+// ----------------------------------------------------------------------------
 // I/O hooks
 // Override for bare-metal targets that lack stdio (e.g. route through UART).
 //

@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o.d"
   "CMakeFiles/ail-vm.dir/src/vm/ram.cpp.o"
   "CMakeFiles/ail-vm.dir/src/vm/ram.cpp.o.d"
+  "CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o"
+  "CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o.d"
   "CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o"
   "CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o.d"
   "CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o"

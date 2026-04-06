@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/call_stack.cpp" "CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/call_stack.cpp.o.d"
   "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/kernel_interrupts.cpp" "CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/kernel_interrupts.cpp.o.d"
   "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/ram.cpp" "CMakeFiles/ail-vm.dir/src/vm/ram.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/ram.cpp.o.d"
+  "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/software_interrupts.cpp" "CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/software_interrupts.cpp.o.d"
   "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/vm.cpp" "CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/vm.cpp.o.d"
   "/home/runner/work/Artemis-IL/Artemis-IL/source/AIL-CPP/src/vm/vm_ops.cpp" "CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o" "gcc" "CMakeFiles/ail-vm.dir/src/vm/vm_ops.cpp.o.d"
   )
